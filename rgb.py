@@ -19,7 +19,7 @@ try:
             
             for i,c in enumerate(channels):
                 print(i,c,rgb[i])
-                GPIO.output(c,bool(int(rgb[i])))
+                GPIO.output(c,not bool(int(rgb[i])))
 
         except ValueError:
             print("Invalid input, try again....")

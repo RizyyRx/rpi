@@ -26,9 +26,10 @@ class RGB():
     def setColour(self,r,g,b):
 
         #To create 255 values from 100
-        r = (r/255) * 100 
-        g = (g/255) * 100
-        b = (b/255) * 100
+	#sub by 100 to inverse the logic of active low input to active high input
+        r = 100-((r/255) * 100) 
+        g = 100-((g/255) * 100)
+        b = 100-((b/255) * 100)
 
         print(r,g,b)
 
@@ -38,6 +39,6 @@ class RGB():
         self.b.ChangeDutyCycle(int(b))
 
 led=RGB(12,13,19)
-led.setColour(255,100,51)
+led.setColour(255,51,128)
 sleep(3)
 GPIO.cleanup()
