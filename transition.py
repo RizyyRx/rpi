@@ -5,10 +5,12 @@ channel = 12
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(channel,GPIO.OUT)
 
-p=GPIO.PWM(channel,60)
+p=GPIO.PWM(channel,60) #here 60hz defines smoothness of the transition between dutycycles.
 print("starting pwm...")
 p.start(0)
 a=0
+
+
 try:
     while True:
         # a=0
