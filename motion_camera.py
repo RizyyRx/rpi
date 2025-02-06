@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 import os
-from ratelimit import limits
+# from ratelimit import limits
 from uuid import uuid4
 from threading import Thread
 import requests
@@ -20,7 +20,7 @@ GPIO.setup(channel,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
 def upload_picture(filename):
     name = filename.split("/")[-1]
 
-    url = "http://172.30.0.60:5000/api/motion/capture"
+    url = "https://iotcloud.selfmade.technology/api/motion/capture"
 
     payload = {}
     files=[
@@ -34,7 +34,6 @@ def upload_picture(filename):
 
     print(response.text)
 
-@limits(calls=1, period=1)
 def click_picture():
     print("taking pic..")
     uuid = str(uuid4())
@@ -51,7 +50,7 @@ try:
                 click_picture()
             except Exception as e:
                 print(f"Error taking picture: {e}")
-            time.sleep(1)
+            time.sleep(2)
 except KeyboardInterrupt:
 	print("zzzzz")
 	GPIO.cleanup()
