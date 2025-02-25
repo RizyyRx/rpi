@@ -6,6 +6,7 @@ from uuid import uuid4
 from threading import Thread
 import requests
 
+print("started motion_camera.py script")
 DEVICE_ID = "raspi_cam_1"
 STORAGE_LOCATION = "motion_captures"
 
@@ -13,14 +14,13 @@ if not os.path.exists(STORAGE_LOCATION):
     os.mkdir(STORAGE_LOCATION)
 
 GPIO.setmode(GPIO.BCM)
-channel = 27 
-
+channel = 27
 GPIO.setup(channel,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
 
 def upload_picture(filename):
     name = filename.split("/")[-1]
 
-    url = "https://iotcloud.selfmade.technology/api/motion/capture"
+    url = "http://192.168.1.6:5000/api/motion/capture"
 
     payload = {}
     files=[
