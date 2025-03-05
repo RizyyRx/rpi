@@ -20,7 +20,7 @@ GPIO.setup(channel,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
 def upload_picture(filename):
     name = filename.split("/")[-1]
 
-    url = "http://192.168.1.6:5000/api/motion/capture"
+    url = "http://192.168.1.7:5000/api/motion/capture"
 
     payload = {}
     files=[
